@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.10.8 on win32)" generated="20230329 15:37:13.806" rpa="false" schemaversion="3">
+<suite id="s1" name="Login" source="D:\python\xm_git\testcases\login.robot">
+<test id="s1-t1" name="登录测试" line="8">
+<kw name="Login Miss" library="pylib.api_def">
+<var>${login}</var>
+<msg timestamp="20230329 15:37:14.005" level="INFO">{"msg":"登陆成功","code":200,"data":"1640981418077802496"}</msg>
+<msg timestamp="20230329 15:37:14.005" level="INFO">${login} = {"msg":"登陆成功","code":200,"data":"1640981418077802496"}</msg>
+<status status="PASS" starttime="20230329 15:37:13.984" endtime="20230329 15:37:14.005"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${login}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230329 15:37:14.005" endtime="20230329 15:37:14.006"/>
+</kw>
+<status status="PASS" starttime="20230329 15:37:13.983" endtime="20230329 15:37:14.006"/>
+</test>
+<status status="PASS" starttime="20230329 15:37:13.810" endtime="20230329 15:37:14.008"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Login">Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
