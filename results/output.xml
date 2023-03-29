@@ -1,30 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.2 (Python 3.10.8 on win32)" generated="20230329 15:37:13.806" rpa="false" schemaversion="3">
-<suite id="s1" name="Login" source="D:\python\xm_git\testcases\login.robot">
-<test id="s1-t1" name="登录测试" line="8">
-<kw name="Login Miss" library="pylib.api_def">
-<var>${login}</var>
-<msg timestamp="20230329 15:37:14.005" level="INFO">{"msg":"登陆成功","code":200,"data":"1640981418077802496"}</msg>
-<msg timestamp="20230329 15:37:14.005" level="INFO">${login} = {"msg":"登陆成功","code":200,"data":"1640981418077802496"}</msg>
-<status status="PASS" starttime="20230329 15:37:13.984" endtime="20230329 15:37:14.005"/>
+<robot generator="Robot 6.0.2 (Python 3.10.8 on win32)" generated="20230329 20:18:28.686" rpa="false" schemaversion="3">
+<suite id="s1" name="Api" source="D:\python\xm_git\testcases\api\api.robot">
+<kw name="Login Miss" library="pylib.api_def" type="SETUP">
+<msg timestamp="20230329 20:18:28.850" level="INFO">{"msg":"登陆成功","code":200,"data":"1641052197531013120"}
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230329 20:18:28.834" endtime="20230329 20:18:28.850"/>
 </kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${login}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20230329 15:37:14.005" endtime="20230329 15:37:14.006"/>
+<test id="s1-t1" name="添加用户测试传参版" line="44">
+<kw name="新增配置">
+<arg>15095889221</arg>
+<arg>添加成功</arg>
+<kw name="Add User 1" library="pylib.api_def">
+<var>${sj}</var>
+<arg>${phone}</arg>
+<msg timestamp="20230329 20:18:28.869" level="INFO">添加成功</msg>
+<msg timestamp="20230329 20:18:28.870" level="INFO">${sj} = 添加成功</msg>
+<status status="PASS" starttime="20230329 20:18:28.851" endtime="20230329 20:18:28.870"/>
 </kw>
-<status status="PASS" starttime="20230329 15:37:13.983" endtime="20230329 15:37:14.006"/>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${sj}</arg>
+<arg>${yq}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230329 20:18:28.870" endtime="20230329 20:18:28.870"/>
+</kw>
+<status status="PASS" starttime="20230329 20:18:28.851" endtime="20230329 20:18:28.870"/>
+</kw>
+<kw name="新增配置">
+<arg>菜鸡菜鸡</arg>
+<arg>服务器繁忙</arg>
+<kw name="Add User 1" library="pylib.api_def">
+<var>${sj}</var>
+<arg>${phone}</arg>
+<msg timestamp="20230329 20:18:28.894" level="INFO">服务器繁忙</msg>
+<msg timestamp="20230329 20:18:28.894" level="INFO">${sj} = 服务器繁忙</msg>
+<status status="PASS" starttime="20230329 20:18:28.871" endtime="20230329 20:18:28.894"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${sj}</arg>
+<arg>${yq}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230329 20:18:28.894" endtime="20230329 20:18:28.894"/>
+</kw>
+<status status="PASS" starttime="20230329 20:18:28.871" endtime="20230329 20:18:28.894"/>
+</kw>
+<kw name="新增配置">
+<arg>1111</arg>
+<arg>服务器繁忙</arg>
+<kw name="Add User 1" library="pylib.api_def">
+<var>${sj}</var>
+<arg>${phone}</arg>
+<msg timestamp="20230329 20:18:28.912" level="INFO">服务器繁忙</msg>
+<msg timestamp="20230329 20:18:28.912" level="INFO">${sj} = 服务器繁忙</msg>
+<status status="PASS" starttime="20230329 20:18:28.895" endtime="20230329 20:18:28.912"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${sj}</arg>
+<arg>${yq}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230329 20:18:28.912" endtime="20230329 20:18:28.912"/>
+</kw>
+<status status="PASS" starttime="20230329 20:18:28.895" endtime="20230329 20:18:28.912"/>
+</kw>
+<kw name="新增配置">
+<arg>150945684721</arg>
+<arg>添加成功</arg>
+<kw name="Add User 1" library="pylib.api_def">
+<var>${sj}</var>
+<arg>${phone}</arg>
+<msg timestamp="20230329 20:18:28.934" level="INFO">添加成功</msg>
+<msg timestamp="20230329 20:18:28.934" level="INFO">${sj} = 添加成功</msg>
+<status status="PASS" starttime="20230329 20:18:28.913" endtime="20230329 20:18:28.934"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${sj}</arg>
+<arg>${yq}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230329 20:18:28.934" endtime="20230329 20:18:28.935"/>
+</kw>
+<status status="PASS" starttime="20230329 20:18:28.913" endtime="20230329 20:18:28.935"/>
+</kw>
+<kw name="新增配置">
+<arg>asdfasfa</arg>
+<arg>服务器繁忙</arg>
+<kw name="Add User 1" library="pylib.api_def">
+<var>${sj}</var>
+<arg>${phone}</arg>
+<msg timestamp="20230329 20:18:28.950" level="INFO">服务器繁忙</msg>
+<msg timestamp="20230329 20:18:28.950" level="INFO">${sj} = 服务器繁忙</msg>
+<status status="PASS" starttime="20230329 20:18:28.936" endtime="20230329 20:18:28.950"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${sj}</arg>
+<arg>${yq}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230329 20:18:28.950" endtime="20230329 20:18:28.951"/>
+</kw>
+<status status="PASS" starttime="20230329 20:18:28.935" endtime="20230329 20:18:28.951"/>
+</kw>
+<tag>接口测试</tag>
+<status status="PASS" starttime="20230329 20:18:28.850" endtime="20230329 20:18:28.951"/>
 </test>
-<status status="PASS" starttime="20230329 15:37:13.810" endtime="20230329 15:37:14.008"/>
+<status status="PASS" starttime="20230329 20:18:28.692" endtime="20230329 20:18:28.953"/>
 </suite>
 <statistics>
 <total>
 <stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
+<stat pass="1" fail="0" skip="0">接口测试</stat>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Login">Login</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Api">Api</stat>
 </suite>
 </statistics>
 <errors>

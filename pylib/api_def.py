@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 # 2023/3/27 15:45
-import json
-
+import json,pymysql,datetime
 import requests
-
 import random
-sj = random.randint(1,9999)
+from pylib.database_info import *
 from pylib.url_info import *
 s = requests.session()
 def php():
-    re = s.get(url="192.168.120.2:8090/labPhpVersion/getAllPhp")
+    re = s.get(url=url+"/labPhpVersion/getAllPhp")
     print(re.text)
+    sj_jg = json.loads(re.text)
+    print(sj_jg)
+    return sj_jg.get("code")
+
 def login_miss():
     param = {
   "password": "123123",
@@ -26,20 +28,97 @@ def login_miss():
     # print(re.headers)
     # print(type(j_data))
     print(re.text)
-    return re.text
+    sj_result = json.loads(re.text)
+    print(type(sj_result.get("msg")))
+    return sj_result.get("msg")
 
-login_miss()
+
 def TOMCat():
     r= s.get(url=url+"/labTomcatVersion/getAllTomcat")
     print(r.text)
-
+    sj_jg = json.loads(r.text)
+    print(sj_jg)
+    return sj_jg.get("code")
 
 def add_user():
+    sj = random.randint(1, 9999999)
+    global miss
+    miss = f"1599{sj}"
+    print(miss)
     data = {
-        "phone":f"1599999{sj}"
+        "phone":miss
     }
     r = s.get(url=url+"/labUser/addUser",params=data)
-    print(r.text)
+    # print(r.text)
+    sj_jg = json.loads(r.text)
+    # print(sj_jg.get("msg"))
+    # print(sj)
+
+    return sj_jg.get("msg"),miss
+
+def add_user_1(phone):
+    data = {
+        "phone":phone
+    }
+    r = s.get(url=url+"/labUser/addUser",params=data)
+    # print(r.text)
+    sj_jg = json.loads(r.text)
+    # print(sj_jg.get("msg"))
+    # print(sj)
+    print(sj_jg.get("msg"))
+    return sj_jg.get("msg")
+
+add_user_1("150945684723")
+def retrieve_table(sql):
+    '''
+    查询方法
+    :param sql: SQL语句
+    :return: 查询结果
+    '''
+    conn = pymysql.connect(**database_info)
+    curs = conn.cursor(pymysql.cursors.DictCursor)
+    curs.execute(sql)
+    select_relust = curs.fetchall()  # 列表嵌套字典
+    for i in select_relust:  # i就是每一个字典
+        for j in i.keys():  # j每一个字典的key
+            if type(i[j]) == datetime.date:
+                i[j] = i[j].strftime("%Y-%m-%d")
+    curs.close()
+    conn.close()
+    return select_relust[0].get("phone")
+
+
+def cud_table(sql):
+    '''
+    crud增删改查
+    :return:
+    '''
+    conn = pymysql.connect(**database_info)
+    curs = conn.cursor(pymysql.cursors.DictCursor)
+    curs.execute(sql)
+    curs.close()
+    conn.close()
+
+
+# def retrieve_table(sql):
+#     '''
+#     查询方法
+#     :param sql: SQL语句
+#     :return: 查询结果
+#     '''
+#     conn = pymysql.connect(**database_info)
+#     curs = conn.cursor(pymysql.cursors.DictCursor)
+#     curs.execute(sql)
+#     select_relust = curs.fetchall()    # 列表嵌套字典
+#     for i in select_relust: # i就是每一个字典
+#         for j in i.keys():  # j每一个字典的key
+#             if type(i[j]) == datetime.date:
+#                 i[j] = i[j].strftime("%Y-%m-%d")
+#     curs.close()
+#     conn.close()
+#     return select_relust
+
+
 
 def status_user():
     data = {
@@ -119,6 +198,6 @@ def cz_status():
     r = s.get(url=url+"/labUser/updateUserStates",params=data)
     print(r.text)
 
-
-if __name__ == '__main__':
-    print(login_miss())
+#
+# if __name__ == '__main__':
+#     # print(login_miss())
