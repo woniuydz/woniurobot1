@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.10.8 on win32)" generated="20230328 16:28:54.826" rpa="false" schemaversion="3">
+<suite id="s1" name="Login" source="E:\woniu_lab\testcases\api\login.robot">
+<test id="s1-t1" name="登录测试" line="16">
+<kw name="登录">
+<arg>12327114827</arg>
+<arg>111111</arg>
+<arg>success</arg>
+<kw name="Login" library="rflib.api.api_libb">
+<var>${result}</var>
+<arg>${phone}</arg>
+<arg>${password}</arg>
+<msg timestamp="20230328 16:28:54.970" level="INFO">{"msg":"手机号码格式错误","code":50010,"data":null}
+{"phone": "12327114827", "password": "111111"}
+http://192.168.120.2:8090/labManager/login</msg>
+<msg timestamp="20230328 16:28:54.970" level="INFO">${result} = None</msg>
+<status status="PASS" starttime="20230328 16:28:54.952" endtime="20230328 16:28:54.970"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${excpet}</arg>
+<arg>${result}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20230328 16:28:54.970" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<msg timestamp="20230328 16:28:54.970" level="FAIL">success != None</msg>
+<status status="FAIL" starttime="20230328 16:28:54.970" endtime="20230328 16:28:54.971"/>
+</kw>
+<status status="FAIL" starttime="20230328 16:28:54.951" endtime="20230328 16:28:54.971"/>
+</kw>
+<tag>api</tag>
+<status status="FAIL" starttime="20230328 16:28:54.951" endtime="20230328 16:28:54.971">success != None</status>
+</test>
+<status status="FAIL" starttime="20230328 16:28:54.828" endtime="20230328 16:28:54.973"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">api</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Login">Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
