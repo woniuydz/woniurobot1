@@ -14,7 +14,7 @@ def login(phone,password):
              }
     js_data = json.dumps(param)
     header = {"Content-Type": "application/json"}
-    re = session.post(url = f'{url}/labManager/login',data=js_data, headers=header)
+    re = session.post(url = f'{url}/labManager/login',data=js_data,headers=header)
     re_result = json.dumps(re.text)
     data = re.json()
     msg = data.get('msg')
@@ -51,34 +51,34 @@ def add_lab():
     print(re.url)
 
 #   查询实验
-def select_lab(token):
+def select_lab():
     param = {"experimentName": "1"}
     js_data = json.dumps(param)
-    header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.get(url = f'{url}/labExperiment/getExperiment',data=js_data,headers=header)
     print(re.text)
     print(js_data)
     print(re.url)
 
 #   删除实验.robot
-def del_lab(token):
+def del_lab():
     param = {"id": "19"
              }
     js_data = json.dumps(param)
-    header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.delete(url = f'{url}/labExperiment/delExperiment',data=js_data,headers=header)
     print(re.text)
     print(js_data)
     print(re.url)
 
 #   查询会员购买记录.robot
-def select_huiyuan_buy_jilu():
+def select_huiyuan_buy_jilu(token):
     param = {"pageNum": 1,
              "pageSize": 10
              }
     js_data = json.dumps(param)
-    header = {"Content-Type": "application/json"}
-    # header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
+    # header = {"Content-Type": "application/json"}
+    header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
     re = session.get(url = f'{url}/labVip/getVipBuy',params=param,headers=header)
     print(re.text)
     print(js_data)
@@ -97,156 +97,138 @@ def add_speaker_account(managerName,phone):
     print(re.url)
 
 #   禁用讲师账户
-def jinyong_speaker_account(id,token):
+def jinyong_speaker_account(id):
     param = {"id": id}
     js_data = json.dumps(param)
-    header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.get(url = f'{url}/labManager/disEnableManager',params=param,headers=header)
     print(re.text)
     print(js_data)
     print(re.url)
 
 #   启用讲师账户
-def qiyong_speaker_account(id,token):
+def qiyong_speaker_account(id):
     param = {"id": id}
     js_data = json.dumps(param)
-    header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.get(url = f'{url}/labManager/enableManager',params=param,headers=header)
     print(re.text)
     print(js_data)
     print(re.url)
 
 #   查询讲师账户
-def select_speaker_account(token,pageNum=None,pageSize=None,searchName=None):
+def select_speaker_account(pageNum=None,pageSize=None,searchName=None):
     param = {"pageNum": pageNum,
              "pageSize":pageSize,
              "searchName":searchName
              }
     js_data = json.dumps(param)
-    header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.get(url = f'{url}/labManager/getManager',params=param,headers=header)
     print(re.text)
     print(js_data)
     print(re.url)
 
-#   修改密码
-def update_password(oldPassword,password,token):
-    param = {"oldPassword": oldPassword,
-             "password":password}
-    js_data = json.dumps(param)
-    header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
-    re = session.put(url = f'{url}/labManager/updatePwd',data=js_data,headers=header)
-    print(re.text)
-    print(js_data)
-    print(re.url)
+# #   修改密码
+# def update_password(oldPassword,password,token):
+#     param = {"oldPassword": oldPassword,
+#              "password":password}
+#     js_data = json.dumps(param)
+#     header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
+#     re = session.put(url = f'{url}/labManager/updatePwd',data=js_data,headers=header)
+#     print(re.text)
+#     print(js_data)
+#     print(re.url)
 
 #   重置讲师账户密码
-def chongzhi_speaker_password(id,token):
+def chongzhi_speaker_password(id):
     param = {"id": id}
     js_data = json.dumps(param)
-    header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.get(url = f'{url}/labManager/removeManager',params=param,headers=header)
     print(re.text)
     print(param)
     print(re.url)
 
 #   修改密码
-def update_password(oldPassword,password,token):
+def update_password(oldPassword,password):
     param = {"oldPassword": oldPassword,
              "password":password}
     js_data = json.dumps(param)
-    header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.put(url = f'{url}/labManager/updatePwd',data=js_data,headers=header)
     print(re.text)
     print(js_data)
     print(re.url)
 
 #   删除讲师账户
-def del_speaker_account(id,token):
+def del_speaker_account(id):
     param = {"id": id}
     js_data = json.dumps(param)
-    header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.delete(url = f'{url}/labManager/delManager',data=js_data,headers=header)
     print(re.text)
     print(js_data)
     print(re.url)
 
 #   添加菜单列表信息
-def add_menu_info(menuName,state,token):
+def add_menu_info(menuName,state):
     param = {"menuName": menuName,
              "state": state
              }
     js_data = json.dumps(param)
-    header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.post(url = f'{url}/labMenuManage/add',data=js_data,headers=header)
     print(re.text)
     print(js_data)
     print(re.url)
 
 #   查询菜单列表信息
-def select_menu_info(token,menuName=None):
+def select_menu_info(menuName=None):
     param = {"menuName": menuName}
     js_data = json.dumps(param)
-    header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.get(url = f'{url}/labMenuManage/get',params=param,headers=header)
     print(re.text)
     print(js_data)
     print(re.url)
 
 #   修改菜单列表信息
-def update_menu_info(id,menuName,state,token):
+def update_menu_info(id,menuName,state):
     param = {"id": id,
              "menuName": menuName,
              "state": state}
     js_data = json.dumps(param)
-    header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.put(url = f'{url}/labMenuManage/update',data=js_data,headers=header)
     print(re.text)
     print(js_data)
     print(re.url)
 
 #   删除系统菜单
-def del_menu_info(token):
+def del_menu_info():
     param = {"menuId": "16"}
     js_data = json.dumps(param)
-    header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.delete(url = f'{url}/labMenuManage/delete',data=js_data,headers=header)
     print(re.text)
     print(js_data)
     print(re.url)
 
 #   查询当前靶场所有评论
-def select_bachang_pinglun(pageNum,pageSize,shootGroundId,token):
+def select_bachang_pinglun(pageNum,pageSize,shootGroundId):
     param = {"pageNum": pageNum,
              "pageSize": pageSize,
              "shootGroundId": shootGroundId}
     js_data = json.dumps(param)
-    header = {'com.woniuxy.woniulab.manage.token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.get(url = f'{url}/labComments/getAllLabBill',params=param,headers=header)
     print(re.text)
     print(js_data)
     print(re.url)
 
 #   用户端--登录
-def login_user(phone, password):
-    """
-    登录接口
-    :param phone: 手机号
-    :param password: 密码
-    :return: 返回字典
-    """
-    param = {
-        "phone":phone,
-        "password":password
-    }
-    # json.dumps(js)    # 转json体
-    header = {"Content-Type":"application/json"}
-    re = session.post(url=url + "/labUser/passLogin", json=param,headers=header).text
-    js_data = json.loads(re)   # json体转字典
-    return js_data
-    # return a.get("msg")
-
-def login_user1(password,phone):
+def login_user(password,phone):
     param = {'password':password,
              'phone':phone
              }
@@ -264,38 +246,37 @@ def login_user1(password,phone):
     return token
 
 #   查询我的通关实验记录
-def select_info(token,pageNum=None,pageSize=None):
+def select_info(pageNum=None,pageSize=None):
     param = {'pageNum':pageNum,
              'pageSize':pageSize
-             # 'token':token
              }
     js_data = json.dumps(param)
-    header = {'com.woniuLab.user.token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.get(url = f'{uu}/labUserPass/getLabUserPass',params=param,headers=header)
     print(re.text)
     print(js_data)
     print(re.url)
 
 #   发表评论
-def add_info(token,content,shootGroundId):
+def add_info(content,shootGroundId):
     param = {'content':content,
              'shootGroundId':shootGroundId
              }
     js_data = json.dumps(param)
-    header = {'token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.post(url = f'{uu}/labComments/addLabComments',data=js_data,headers=header)
     print(re.text)
     print(js_data)
     print(re.url)
 
 #   查询当前靶场所有评论
-def user_select_bachang_info(token,pageNum,pageSize,shootGroundId):
+def user_select_bachang_info(pageNum,pageSize,shootGroundId):
     param = {'pageNum':pageNum,
              'pageSize':pageSize,
              'shootGroundId':shootGroundId
              }
     js_data = json.dumps(param)
-    header = {'token':token,"Content-Type": "application/json"}
+    header = {"Content-Type": "application/json"}
     re = session.get(url = f'{uu}/labComments/getAllLabComments',params=param,headers=header)
     print(re.text)
     print(js_data)
