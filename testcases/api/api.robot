@@ -20,6 +20,8 @@ Suite Setup         login_miss     #前置：登录
 
 
 
+
+
 *** Test Cases ***
 php接口
     ${sj_jg}        php
@@ -104,6 +106,10 @@ TOMCat接口
             胡涛          查询成功        #输入不存在的用户名查询，逻辑上来说应该提示用户不存在但是实际是查询成功
 
 根据用户状态查询
+                ${sj}       getuserbystates
+                ${yq}=  set variable       访问成功
+                should be equal     ${sj}       ${yq}
+
 
 
 

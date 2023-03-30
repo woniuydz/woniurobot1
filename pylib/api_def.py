@@ -184,7 +184,7 @@ def get_name(name):
     # sj = json.loads(r.text)
     # return sj.get("msg")
 # get_name("")
-def getUserBystates(states):
+def getuserbystates(states):
     data = {
         "states": states,
         "pageNum": 1,
@@ -192,6 +192,8 @@ def getUserBystates(states):
     }
     r = s.get(url=url + "/labUser/getUserByStates", params=data)
     print(r.text)
+    sj = json.loads(r.text)
+    return sj.get("msg")
 getUserBystates("0")
 def getgetUserByVip():
     data = {
