@@ -65,10 +65,10 @@ def add_user_1(phone):
     sj_jg = json.loads(r.text)
     # print(sj_jg.get("msg"))
     # print(sj)
-    print(sj_jg.get("msg"))
-    return sj_jg.get("msg")
-
-add_user_1("150945684723")
+    print(sj_jg)
+    return sj_jg.get("msg"),phone
+# add_user_1("19191945655")
+# add_user_1("19595959599")
 def retrieve_table(sql):
     '''
     查询方法
@@ -87,6 +87,24 @@ def retrieve_table(sql):
     conn.close()
     return select_relust[0].get("phone")
 
+def r_table(sql):
+    '''
+    查询方法
+    :param sql: SQL语句
+    :return: 查询结果
+    '''
+    conn = pymysql.connect(**database_info)
+    curs = conn.cursor(pymysql.cursors.DictCursor)
+    curs.execute(sql)
+    select_relust = curs.fetchall()  # 列表嵌套字典
+    for i in select_relust:  # i就是每一个字典
+        for j in i.keys():  # j每一个字典的key
+            if type(i[j]) == datetime.date:
+                i[j] = i[j].strftime("%Y-%m-%d")
+    curs.close()
+    conn.close()
+    print(select_relust[0].get("states"))
+    return select_relust[0].get("states")
 
 def cud_table(sql):
     '''
@@ -98,75 +116,83 @@ def cud_table(sql):
     curs.execute(sql)
     curs.close()
     conn.close()
-
-
-# def retrieve_table(sql):
-#     '''
-#     查询方法
-#     :param sql: SQL语句
-#     :return: 查询结果
-#     '''
-#     conn = pymysql.connect(**database_info)
-#     curs = conn.cursor(pymysql.cursors.DictCursor)
-#     curs.execute(sql)
-#     select_relust = curs.fetchall()    # 列表嵌套字典
-#     for i in select_relust: # i就是每一个字典
-#         for j in i.keys():  # j每一个字典的key
-#             if type(i[j]) == datetime.date:
-#                 i[j] = i[j].strftime("%Y-%m-%d")
-#     curs.close()
-#     conn.close()
-#     return select_relust
-
-
-
-def status_user():
+def r_tb(sql):
+    '''
+    查询方法
+    :param sql: SQL语句
+    :return: 查询结果
+    '''
+    conn = pymysql.connect(**database_info)
+    curs = conn.cursor(pymysql.cursors.DictCursor)
+    curs.execute(sql)
+    select_relust = curs.fetchall()  # 列表嵌套字典
+    for i in select_relust:  # i就是每一个字典
+        for j in i.keys():  # j每一个字典的key
+            if type(i[j]) == datetime.date:
+                i[j] = i[j].strftime("%Y-%m-%d")
+    curs.close()
+    conn.close()
+def status_user(id):
     data = {
-        "id":"77"
+        "id":id
     }
     r =s.get(url=url+"/labUser/changeUserStates",params=data)
     print(r.text)
 
-def conutbylogin():
+    sj = json.loads(r.text)
+    return sj.get("msg"),id
+# status_user("26")
+def conutbylogin():#
     r = s.post(url=url+"/labUser/countByLogin")
     print(r.text)
-
+    sj = json.loads(r.text)
+    return sj.get("msg")
+# conutbylogin()
 def conutbyzc():
     r = s.post(url=url+"/labUser/countInRegisterByWeek")
     print(r.text)
+    sj = json.loads(r.text)
+    return sj.get("msg")
 
 
-def delete_user():
+
+def delete_user(id):
     data = {
-        "id":"77"
+        "id":id
     }
     r = s.delete(url=url+"/labUser/delUser",params=data)
     print(r.text)
 def get_day_money():
     r = s.get(url=url+"/labUser/getDayMoney")
     print(r.text)
+    sj = json.loads(r.text)
+    return sj.get("msg")
 
 def get_month_money():
     r = s.get(url=url+"/labUser/getMonthMoney")
     print(r.text)
-def get_name():
+    sj = json.loads(r.text)
+    return sj.get("msg")
+def get_name(name):
     data = {
-        "name":"admin",
+        "name":name,
         "pageNum":1,
         "pageSize":10
     }
     r = s.get(url=url+"/labUser/getUserByName",params=data)
     print(r.text)
-
-def getUserByName():
+    # sj = json.loads(r.text)
+    # return sj.get("msg")
+# get_name("")
+def getUserBystates(states):
     data = {
-        "states": 1,
+        "states": states,
         "pageNum": 1,
         "pageSize": 10
     }
     r = s.get(url=url + "/labUser/getUserByStates", params=data)
     print(r.text)
-
+getUserBystates("0")
 def getgetUserByVip():
     data = {
         "vip": 1,
