@@ -1,51 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.2 (Python 3.10.8 on win32)" generated="20230330 19:07:23.528" rpa="false" schemaversion="3">
+<robot generator="Robot 6.0.2 (Python 3.10.8 on win32)" generated="20230330 20:33:01.161" rpa="false" schemaversion="3">
 <suite id="s1" name="Api" source="D:\python\xm_git\testcases\api\api.robot">
-<kw name="login_miss" type="SETUP">
-<msg timestamp="20230330 19:07:44.705" level="FAIL">No keyword with name 'login_miss' found. Did you try using keyword 'BuiltIn.Log' and forgot to use enough whitespace between keyword and arguments?</msg>
-<status status="FAIL" starttime="20230330 19:07:44.705" endtime="20230330 19:07:44.705"/>
+<kw name="Login Miss" library="pylib.api_def" type="SETUP">
+<msg timestamp="20230330 20:33:01.309" level="INFO">{"msg":"当前用户账号不存在","code":50000,"data":null}
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230330 20:33:01.300" endtime="20230330 20:33:01.309"/>
 </kw>
-<test id="s1-t1" name="根据用户状态查询" line="114">
+<test id="s1-t1" name="禁用用户" line="148">
+<kw name="Add User" library="pylib.api_def">
+<var>${user}</var>
+<msg timestamp="20230330 20:33:01.321" level="INFO">15999149356</msg>
+<msg timestamp="20230330 20:33:01.321" level="INFO">${user} = ('添加成功', '15999149356')</msg>
+<status status="PASS" starttime="20230330 20:33:01.310" endtime="20230330 20:33:01.322"/>
+</kw>
+<kw name="R Tb" library="pylib.api_def">
+<var>${id}</var>
+<arg>select id from lab_user where phone=${user}[1]</arg>
+<doc>查询方法
+:param sql: SQL语句
+:return: 查询结果</doc>
+<msg timestamp="20230330 20:33:01.348" level="INFO">89</msg>
+<msg timestamp="20230330 20:33:01.349" level="INFO">${id} = 89</msg>
+<status status="PASS" starttime="20230330 20:33:01.322" endtime="20230330 20:33:01.349"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${user}[1]</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230330 20:33:01.349" level="INFO">15999149356</msg>
+<status status="PASS" starttime="20230330 20:33:01.349" endtime="20230330 20:33:01.350"/>
+</kw>
+<kw name="Cz Status" library="pylib.api_def">
+<var>${sj}</var>
+<arg>${id}</arg>
+<msg timestamp="20230330 20:33:01.359" level="INFO">{"msg":"禁用用户成功","code":200,"data":null}</msg>
+<msg timestamp="20230330 20:33:01.360" level="INFO">${sj} = 禁用用户成功</msg>
+<status status="PASS" starttime="20230330 20:33:01.350" endtime="20230330 20:33:01.360"/>
+</kw>
+<kw name="R Table" library="pylib.api_def">
+<var>${sj1}</var>
+<arg>select states from lab_user where id = ${id}</arg>
+<doc>查询方法
+:param sql: SQL语句
+:return: 查询结果</doc>
+<msg timestamp="20230330 20:33:01.395" level="INFO">0</msg>
+<msg timestamp="20230330 20:33:01.395" level="INFO">${sj1} = 0</msg>
+<status status="PASS" starttime="20230330 20:33:01.360" endtime="20230330 20:33:01.395"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${id}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230330 20:33:01.396" level="INFO">89</msg>
+<status status="PASS" starttime="20230330 20:33:01.395" endtime="20230330 20:33:01.396"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${sj}</arg>
+<arg>禁用用户成功</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230330 20:33:01.396" endtime="20230330 20:33:01.396"/>
+</kw>
+<kw name="Convert To Integer" library="BuiltIn">
+<var>${yq1}</var>
+<arg>0</arg>
+<doc>Converts the given item to an integer number.</doc>
+<msg timestamp="20230330 20:33:01.397" level="INFO">${yq1} = 0</msg>
+<status status="PASS" starttime="20230330 20:33:01.397" endtime="20230330 20:33:01.397"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${sj1}</arg>
+<arg>${yq1}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230330 20:33:01.397" endtime="20230330 20:33:01.397"/>
+</kw>
 <tag>接口测试</tag>
-<status status="FAIL" starttime="20230330 19:07:44.705" endtime="20230330 19:07:44.706">Parent suite setup failed:
-No keyword with name 'login_miss' found. Did you try using keyword 'BuiltIn.Log' and forgot to use enough whitespace between keyword and arguments?</status>
+<status status="PASS" starttime="20230330 20:33:01.310" endtime="20230330 20:33:01.398"/>
 </test>
-<status status="FAIL" starttime="20230330 19:07:23.531" endtime="20230330 19:07:44.708">Suite setup failed:
-No keyword with name 'login_miss' found. Did you try using keyword 'BuiltIn.Log' and forgot to use enough whitespace between keyword and arguments?</status>
+<status status="PASS" starttime="20230330 20:33:01.164" endtime="20230330 20:33:01.399"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1" skip="0">接口测试</stat>
+<stat pass="1" fail="0" skip="0">接口测试</stat>
 </tag>
 <suite>
-<stat pass="0" fail="1" skip="0" id="s1" name="Api">Api</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Api">Api</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20230330 19:07:44.701" level="ERROR">Error in file 'D:\python\xm_git\testcases\api\api.robot' on line 2: Importing library 'pylib.api_def' failed: ConnectTimeout: HTTPConnectionPool(host='192.168.120.2', port=8090): Max retries exceeded with url: /labUser/getUserByStates?states=0&amp;pageNum=1&amp;pageSize=10 (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPConnection object at 0x000001E9CCEFE350&gt;, 'Connection to 192.168.120.2 timed out. (connect timeout=None)'))
-Traceback (most recent call last):
-  File "D:\python\xm_git\pylib\api_def.py", line 197, in &lt;module&gt;
-    getUserBystates("0")
-  File "D:\python\xm_git\pylib\api_def.py", line 193, in getUserBystates
-    r = s.get(url=url + "/labUser/getUserByStates", params=data)
-  File "D:\python\python\lib\site-packages\requests\sessions.py", line 600, in get
-    return self.request("GET", url, **kwargs)
-  File "D:\python\python\lib\site-packages\requests\sessions.py", line 587, in request
-    resp = self.send(prep, **send_kwargs)
-  File "D:\python\python\lib\site-packages\requests\sessions.py", line 701, in send
-    r = adapter.send(request, **kwargs)
-  File "D:\python\python\lib\site-packages\requests\adapters.py", line 553, in send
-    raise ConnectTimeout(e, request=request)
-PYTHONPATH:
-  D:\python\xm_git
-  D:\python\python\Scripts\robot.exe
-  D:\python\python\python310.zip
-  D:\python\python\DLLs
-  D:\python\python\lib
-  D:\python\python
-  D:\python\python\lib\site-packages</msg>
 </errors>
 </robot>

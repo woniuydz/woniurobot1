@@ -106,12 +106,52 @@ TOMCat接口
             胡涛          查询成功        #输入不存在的用户名查询，逻辑上来说应该提示用户不存在但是实际是查询成功
 
 根据用户状态查询
-                ${sj}       getuserbystates
+                ${sj}       getuserbystates     1
+                ${yq}=  set variable       查询成功
+                should be equal     ${sj}       ${yq}
+                ${sj1}       getuserbystates     0
+                ${yq1}=  set variable       查询成功
+                should be equal     ${sj1}       ${yq1}
+根据会员类别状态查询
+                ${sj}       getgetUserByVip     1
+                ${yq}=  set variable       查询成功
+                should be equal     ${sj}       ${yq}
+                ${sj1}       getgetUserByVip     0
+                ${yq1}=  set variable       查询成功
+                should be equal     ${sj1}       ${yq1}
+
+统计用户在线人数
+                ${sj}       getuser now
                 ${yq}=  set variable       访问成功
                 should be equal     ${sj}       ${yq}
+统计用户总人数
+                ${sj}       getuser num
+                ${yq}       r tb 1          select * from lab_user
+                should be equal     ${sj}       ${yq}
+
+统计本周收入
+                ${sj}       getweekmoeny
+                ${yq}=  set variable    访问成功
+                should be equal     ${sj}       ${yq}
+
+重置用户密码
+                ${user}     add user
+                ${id}       r tb        select id from lab_user where phone=${user}[1]
+                ${sj}       CZ PASSWORD     ${id}
+                ${yq}=  set variable    重置成功
+                should be equal     ${sj}       ${yq}
+                ${sj1}      CZ PASSWORD     asdfas  #输入一个没有的用户id
+                ${yq1}=     set variable      服务器繁忙
+                should be equal     ${sj1}       ${yq1}
 
 
-
-
-
-
+禁用用户
+            ${user}     add user
+            ${id}       r tb        select id from lab_user where phone=${user}[1]
+            log      ${user}[1]
+            ${sj}       cz status   ${id}
+            ${sj1}       r table     select states from lab_user where id = ${id}
+            log     ${id}
+            should be equal     ${sj}      禁用用户成功
+            ${yq1}  convert to integer  0
+            should be equal         ${sj1}         ${yq1}

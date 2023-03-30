@@ -116,6 +116,7 @@ def cud_table(sql):
     curs.execute(sql)
     curs.close()
     conn.close()
+
 def r_tb(sql):
     '''
     查询方法
@@ -132,6 +133,8 @@ def r_tb(sql):
                 i[j] = i[j].strftime("%Y-%m-%d")
     curs.close()
     conn.close()
+    print(select_relust[0].get("id"))
+    return select_relust[0].get("id")
 def status_user(id):
     data = {
         "id":id
@@ -194,38 +197,71 @@ def getuserbystates(states):
     print(r.text)
     sj = json.loads(r.text)
     return sj.get("msg")
-getUserBystates("0")
-def getgetUserByVip():
+def getgetUserByVip(vip):
     data = {
-        "vip": 1,
+        "vip": vip,
         "pageNum": 1,
         "pageSize": 10
     }
     r = s.get(url=url + "/labUser/getUserByVip", params=data)
     print(r.text)
+    sj = json.loads(r.text)
+    return sj.get("msg")
 
 def getuser_now():
     r = s.get(url=url+"/labUser/getUserNow")
     print(r.text)
+    sj = json.loads(r.text)
+    return sj.get("msg")
 def getuser_num():
     r = s.get(url=url+"/labUser/getUserNum")
     print(r.text)
+    sj = json.loads(r.text)
+    return sj.get("data")
+# getuser_num()
+def r_tb_1(sql):
+    '''
+    查询方法
+    :param sql: SQL语句
+    :return: 查询结果
+    '''
+    conn = pymysql.connect(**database_info)
+    curs = conn.cursor(pymysql.cursors.DictCursor)
+    curs.execute(sql)
+    select_relust = curs.fetchall()  # 列表嵌套字典
+    for i in select_relust:  # i就是每一个字典
+        for j in i.keys():  # j每一个字典的key
+            if type(i[j]) == datetime.date:
+                i[j] = i[j].strftime("%Y-%m-%d")
+    curs.close()
+    conn.close()
+    # print(select_relust[0].get("id"))
+    print(len(select_relust))
+    return len(select_relust)
+# r_tb_1("select * from lab_user")
 def getweekmoeny():
     r = s.get(url=url+"/labUser/getWeekMoney")
     print(r.text)
-def cz_password():
+    sj = json.loads(r.text)
+    return sj.get("msg")
+# getweekmoeny()
+def cz_password(id):
     data = {
-        "id":30
+        "id":id
     }
     r = s.get(url=url+"/labUser/resetPassword",params=data)
     print(r.text)
-def cz_status():
+    sj = json.loads(r.text)
+    return sj.get("msg")
+cz_password("1323312")
+def cz_status(id):
     data = {
-        "id":30
+        "id":id
     }
     r = s.get(url=url+"/labUser/updateUserStates",params=data)
     print(r.text)
-
+    sj = json.loads(r.text)
+    return sj.get("msg")
 #
 # if __name__ == '__main__':
 #     # print(login_miss())
